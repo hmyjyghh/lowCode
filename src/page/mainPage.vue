@@ -1,39 +1,32 @@
 <template>
   <div class="hello">
-    <div class="header">
-      顶栏
-    </div>
+    <div class="header">顶栏</div>
     <div class="main-content">
       <el-row>
         <el-col :span="4">
           <!-- 物料堆 -->
           <div class="component-stack block">
-            <div class="component-title">
-              物料堆
-            </div>
+            <div class="component-title">物料堆</div>
             <ul>
-              <li v-for="(item, index) in stacks" :key="index"
+              <li
+                v-for="(item, index) in stacks"
+                :key="index"
                 class="component-item"
-                :draggable="true" @drag="handleDrag(item)"
-                >
-                {{ item }}
-              </li>
+                :draggable="true"
+                @drag="handleDrag(item)"
+              >{{ item.name }}</li>
             </ul>
           </div>
         </el-col>
         <el-col :span="16">
           <!-- 主舞台 -->
-          <div class="stage block"
-            @dragover.prevent @drop="handleDrop"
-          >
-            <render-engine ref="engine"
-              :jsonSchema="currentJson" :addNode="selectedType"
+          <div class="stage block" @dragover.prevent @drop="handleDrop">
+            <render-engine
+              ref="engine"
+              :jsonSchema="currentJson"
+              :addNode="selectedType"
               @pickType="handlePickType"
             ></render-engine>
-            <!-- <li v-for="(item, index) in components" :key="index">
-              {{ item }}
-              <component :is="item" />
-            </li> -->
           </div>
         </el-col>
         <el-col :span="4">
@@ -51,88 +44,160 @@
 </template>
 
 <script>
-import { components } from '../components'
-import engine from '../fragments/renderEngine'
-import configPanel from '../fragments/configPanel'
+import { components } from "../components";
+import { cards } from "../card";
+import engine from "../fragments/renderEngine";
+import configPanel from "../fragments/configPanel";
 export default {
-  name: 'HelloWorld',
-  data () {
+  name: "HelloWorld",
+  data() {
     return {
-      msg: 'Welcome to Your Vue.js App',
+      msg: "Welcome to Your Vue.js App",
       // 需要加到配置系统中的组件
-      stacks: ['CButton', 'CInput', 'Container'],
+      stacks: [
+        {
+          ctrlType: "CButton",
+          name: "按钮"
+        },
+        {
+          ctrlType: "CInput",
+          name: "输入框"
+        },
+        {
+          ctrlType: "CButton",
+          name: "按钮2"
+        },
+        {
+          ctrlType: "Dblist",
+          name: "待办列表"
+        },
+        {
+          ctrlType: "GRidone",
+          name: "Grid布局"
+        }
+      ],
       components: [],
       // 数据库拿到的协议
+      // jsonSchema: {
+      //   page: {
+      //     type: "GRidone",
+      //     children: [
+      //       {
+      //         type: "CButton"
+      //       },
+      //       {
+      //         type: "Container",
+      //         children: [
+      //           {
+      //             type: "CInput"
+      //           },
+      //           {
+      //             type: "CButton"
+      //           },
+      //           {
+      //             type: "Dblist"
+      //           }
+      //         ]
+      //       },
+      //       {
+      //         type: "GRidone",
+      //         children: [
+      //           {
+      //             type: "Dblist"
+      //           }
+      //         ]
+      //       }
+      //     ]
+      //   }
+      // },
       jsonSchema: {
         page: {
-          type: 'Container',
-          children: [{
-            type: 'CButton'
-          }, {
-            type: 'Container',
-            children: [{
-              type: 'CInput'
-            }, {
-              type: 'CButton'
-            }]
-          }]
+          type: "Container",
+          children: [
+            {
+              type: "CButton"
+            },
+            {
+              type: "Container",
+              children: [
+                {
+                  type: "CInput"
+                },
+                {
+                  type: "CButton"
+                },
+                {
+                  type: "Dblist"
+                }
+              ]
+            },
+            // {
+            //   type: "GRidone",
+            //   children: [
+            //     {
+            //       type: "Dblist"
+            //     }
+            //   ]
+            // }
+          ]
         }
       },
       // 当前操作的数组
       currentJson: {},
       // 物料堆中，当前拾取类型
-      selectedType: '',
+      selectedType: "",
       // 舞台中，当前选中类型
-      currentPickType: ''
-    }
+      currentPickType: ""
+    };
   },
   methods: {
     // 拾取被配置节点
-    handleDrag (item) {
-      this.selectedType = item
+    handleDrag(item) {
+      this.selectedType = item.ctrlType;
     },
     // 放手
-    handleDrop () {
-      const _type = this.selectedType
+    handleDrop() {
+      const _type = this.selectedType;
 
-      this.components.push(_type)
+      this.components.push(_type);
     },
     // 用户点击选中的节点
-    handlePickType (type) {
-      this.currentPickType = type
+    handlePickType(type) {
+      this.currentPickType = type;
     }
   },
-  created () {
-    this.currentJson = this.jsonSchema
+  created() {
+    this.currentJson = this.jsonSchema;
   },
   components: {
-    ...components,
+    // ...components,
+    // ...cards,
     renderEngine: engine,
     configPanel: configPanel
   }
-}
+};
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-  .block {
-    border: 1px solid var(--lightBg);
-    height: 100vh;
-  }
+.block {
+  position: relative;
+  border: 1px solid var(--lightBg);
+  height: 100vh;
+}
 
-  .header {
-    padding: 10px;
-  }
+.header {
+  padding: 10px;
+}
 
-  /* 物料堆 */
-  .component-title {
-    padding: 10px;
-  }
-  .component-item {
-    border: 1px solid var(--mainLine);
-    margin: 2px 5px;
-    padding: 10px 0;
-    border-radius: 18px;
-  }
-
+/* 物料堆 */
+.component-title {
+  padding: 10px;
+}
+.component-item {
+  border: 1px solid var(--mainLine);
+  margin: 2px 5px;
+  padding: 10px 0;
+  border-radius: 18px;
+}
 </style>

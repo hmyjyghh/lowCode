@@ -77,8 +77,11 @@ export default {
     // 拖拽组件松手
     handleDrop (event, vm) {
       const _json = vm.jsonSchema
+      console.log('_json', _json);
 
-      if (_json && _json.type === 'Container') {
+      if (_json && (_json.type === 'Container' || _json.type === 'GRidone')) { 
+        console.log('_json', _json.type);
+
         if (!_json.children) {
           this.$set(_json, 'children', [])
         }
@@ -94,6 +97,9 @@ export default {
   },
   created () {
     this.init()
+  },
+  mounted() {
+    console.log('...components', components);
   },
   render (h) {
     let _vode = this.renderRoot(h)
