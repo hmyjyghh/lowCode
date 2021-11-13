@@ -1,0 +1,12 @@
+[
+    {
+        "name": "基础属性",
+        "attributes": [
+            {
+                "text": "按钮名称",
+                "bindControlAttr": "btnName",
+                "showType": "text"
+            }
+        ]
+    }
+]

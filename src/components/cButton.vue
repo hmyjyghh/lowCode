@@ -13,3 +13,10 @@ export default {
   }
 }
 </script>
+
+<style lang="scss" scoped>
+button {
+  display: block;
+  margin: 0 auto;
+}
+</style>

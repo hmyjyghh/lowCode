@@ -1,0 +1,565 @@
+[
+    {
+        "name": "基础属性",
+        "attributes": [
+            {
+                "text": "数量接口地址(平台)",
+                "bindControlAttr": "countUrl",
+                "showType": "text",
+                "desc": "自动追加参数tabTypes，参数内容为设置选择的tab集合，用逗号隔开的字符串"
+            },
+            {
+                "text": "列表接口地址(平台)",
+                "bindControlAttr": "listUrl",
+                "showType": "text",
+                "desc": "自动追加参数alldoTypes=所有参数tab集合&tabTypes=当前要加载的tab列表&start=0&page=每页加载多少条&bt=检索的内容&listType=二级分类&sortType=排序规则"
+            },
+            {
+                "text": "数量接口地址(扩展)",
+                "bindControlAttr": "countUrlExe",
+                "showType": "text",
+                "desc": "自动追加参数tabTypes，参数内容为设置选择的tab集合，用逗号隔开的字符串"
+            },
+            {
+                "text": "列表接口地址(扩展)",
+                "bindControlAttr": "listUrlExe",
+                "showType": "text",
+                "desc": "自动追加参数alldoTypes=所有参数tab集合&tabTypes=当前要加载的tab列表&start=0&page=每页加载多少条&bt=检索的内容&listType=二级分类&sortType=排序规则"
+            },
+            {
+                "text": "是否显示搜索",
+                "bindControlAttr": "isShowSearch",
+                "showType": "select",
+                "dictionary": [
+                    {
+                        "text": "否",
+                        "value": false
+                    },
+                    {
+                        "text": "是",
+                        "value": true
+                    }
+                ]
+            },
+            {
+                "text": "标题栏背景色",
+                "bindControlAttr": "titleBarBgColor",
+                "showType": "text"
+            },
+            {
+                "text": "标题栏风格",
+                "bindControlAttr": "titleBarStyle",
+                "showType": "select",
+                "dictionary": [
+                    {
+                        "text": "标准版",
+                        "value": "normal"
+                    },
+                    {
+                        "text": "边框风格(底部)",
+                        "value": "borderbottom"
+                    }
+                ]
+            },
+            {
+                "text": "是否显示没有更多了",
+                "bindControlAttr": "isShownoText",
+                "showType": "select",
+                "dictionary": [
+                    {
+                        "text": "否",
+                        "value": false
+                    },
+                    {
+                        "text": "是",
+                        "value": true
+                    }
+                ]
+            },
+            {
+                "text": "是否开启特殊定制化",
+                "bindControlAttr": "isOpenSpecial",
+                "showType": "select",
+                "dictionary": [
+                    {
+                        "text": "否",
+                        "value": false
+                    },
+                    {
+                        "text": "是",
+                        "value": true
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "name": "容器属性",
+        "attributes": [
+            {
+                "text": "外边距",
+                "bindControlAttr": "margin",
+                "showType": "text"
+            },
+            {
+                "text": "固定高度（为0自动计算）",
+                "bindControlAttr": "fixedHeight",
+                "showType": "number"
+            },
+            {
+                "text": "减去计算高度",
+                "bindControlAttr": "subHeight",
+                "showType": "number",
+                "desc": "页面高度-其他组件占用的高度-本身组件的margin-其他组件的margin = 就是这里要填写的高度",
+                "hidden": "@[fixedHeight == 0]"
+            }
+        ]
+    },
+    {
+        "name": "待办列显示控制",
+        "attributes": [
+            {
+                "text": "状态图标",
+                "bindControlAttr": "statusIcon",
+                "showType": "select",
+                "dictionary": [
+                    {
+                        "text": "否",
+                        "value": false
+                    },
+                    {
+                        "text": "是",
+                        "value": true
+                    }
+                ]
+            },
+            {
+                "text": "是否显示人员名称",
+                "bindControlAttr": "isShowName",
+                "showType": "select",
+                "dictionary": [
+                    {
+                        "text": "否",
+                        "value": false
+                    },
+                    {
+                        "text": "是",
+                        "value": true
+                    }
+                ]
+            },
+            {
+                "text": "是否显示日期",
+                "bindControlAttr": "isShowDate",
+                "showType": "select",
+                "dictionary": [
+                    {
+                        "text": "否",
+                        "value": false
+                    },
+                    {
+                        "text": "是",
+                        "value": true
+                    }
+                ]
+            },
+            {
+                "text": "是否显示节点名称",
+                "bindControlAttr": "isShowNodeName",
+                "showType": "select",
+                "dictionary": [
+                    {
+                        "text": "否",
+                        "value": false
+                    },
+                    {
+                        "text": "是",
+                        "value": true
+                    }
+                ]
+            },
+            {
+                "text": "是否显示模块名称",
+                "bindControlAttr": "isShowModuleName",
+                "showType": "select",
+                "dictionary": [
+                    {
+                        "text": "否",
+                        "value": false
+                    },
+                    {
+                        "text": "是",
+                        "value": true
+                    }
+                ]
+            },
+            {
+                "text": "是否启用按钮操作",
+                "bindControlAttr": "isShowBtns",
+                "showType": "select",
+                "dictionary": [
+                    {
+                        "text": "否",
+                        "value": false
+                    },
+                    {
+                        "text": "是",
+                        "value": true
+                    }
+                ]
+            },
+            {
+                "text": "是否启用超时提醒",
+                "bindControlAttr": "isShowTimeout",
+                "showType": "select",
+                "dictionary": [
+                    {
+                        "text": "否",
+                        "value": false
+                    },
+                    {
+                        "text": "是",
+                        "value": true
+                    }
+                ]
+            },
+            {
+                "text": "已超时颜色设置",
+                "bindControlAttr": "timeoutColor",
+                "showType": "text",
+                "hidden": "@[isShowTimeout == true]"
+            },
+            {
+                "text": "是否显示关注按钮",
+                "bindControlAttr": "isShowFavoriteBtn",
+                "showType": "select",
+                "dictionary": [
+                    {
+                        "text": "否",
+                        "value": false
+                    },
+                    {
+                        "text": "是",
+                        "value": true
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "name": "样式定制",
+        "attributes": [
+            {
+                "text": "组件风格",
+                "bindControlAttr": "controlStyle",
+                "showType": "select",
+                "dictionary": [
+                    {
+                        "text": "标准版（简约）",
+                        "value": "dreamweb"
+                    },
+                    {
+                        "text": "纯色风格",
+                        "value": "gab"
+                    },
+                    {
+                        "text": "渐变风格",
+                        "value": "gradient"
+                    }
+                ]
+            },
+            {
+                "text": "列表字体大小",
+                "bindControlAttr": "listDefaultFontSize",
+                "showType": "select",
+                "dictionary": [
+                    {
+                        "text": "跟随用户自定义",
+                        "value": 0
+                    },
+                    {
+                        "text": "14px",
+                        "value": 14
+                    },
+                    {
+                        "text": "16px",
+                        "value": 16
+                    },
+                    {
+                        "text": "18px",
+                        "value": 18
+                    },
+                    {
+                        "text": "20px",
+                        "value": 20
+                    }
+                ]
+            },
+            {
+                "text": "列表选中字体大小",
+                "bindControlAttr": "listActiveFontSize",
+                "showType": "select",
+                "dictionary": [
+                    {
+                        "text": "跟随用户自定义",
+                        "value": 0
+                    },
+                    {
+                        "text": "14px",
+                        "value": 14
+                    },
+                    {
+                        "text": "16px",
+                        "value": 16
+                    },
+                    {
+                        "text": "18px",
+                        "value": 18
+                    },
+                    {
+                        "text": "20px",
+                        "value": 20
+                    }
+                ]
+            },
+            {
+                "text": "内容背景类型",
+                "bindControlAttr": "contentBgType",
+                "showType": "select",
+                "dictionary": [
+                    {
+                        "text": "跟随主题变化",
+                        "value": 0
+                    },
+                    {
+                        "text": "自定义背景色",
+                        "value": 1
+                    }
+                ]
+            },
+            {
+                "text": "内容背景占主题浓度比例（0-100）",
+                "bindControlAttr": "contentBgAlpha",
+                "showType": "number",
+                "hidden": "@[contentBgType == 0]",
+                "desc": "为0则是不显示主题背景颜色，就显示默认得白色，如果为100则跟主题颜色完全一致"
+            },
+            {
+                "text": "内容背景颜色",
+                "bindControlAttr": "contentBgColor",
+                "showType": "text",
+                "hidden": "@[contentBgType == 1]"
+            },
+            {
+                "text": "是否启用焦点悬浮条",
+                "bindControlAttr": "enableHoverBar",
+                "showType": "select",
+                "dictionary": [
+                    {
+                        "text": "是",
+                        "value": true
+                    },
+                    {
+                        "text": "否",
+                        "value": false
+                    }
+                ]
+            },
+            {
+                "text": "焦点数据背景类型",
+                "bindControlAttr": "hoverBarBgType",
+                "showType": "select",
+                "dictionary": [
+                    {
+                        "text": "跟随主题变化",
+                        "value": 0
+                    },
+                    {
+                        "text": "自定义背景色",
+                        "value": 1
+                    }
+                ]
+            },
+            {
+                "text": "焦点数据背景占主题浓度比例（0-100）",
+                "bindControlAttr": "hoverBarBgAlpha",
+                "showType": "number",
+                "hidden": "@[hoverBarBgType == 0]",
+                "desc": "为0则是不显示主题背景颜色，就显示默认得白色，如果为100则跟主题颜色完全一致"
+            },
+            {
+                "text": "焦点数据背景颜色",
+                "bindControlAttr": "hoverBarBgColor",
+                "showType": "text",
+                "hidden": "@[hoverBarBgType == 1]"
+            },
+            {
+                "text": "提醒角标类型",
+                "bindControlAttr": "remindShowType",
+                "showType": "select",
+                "dictionary": [
+                    {
+                        "text": "未选中显示红点",
+                        "value": 0
+                    },
+                    {
+                        "text": "未选中显示数字",
+                        "value": 1
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "name": "功能定制",
+        "attributes": [
+            {
+                "text": "是否显示报名按钮",
+                "bindControlAttr": "isShowBaoMing",
+                "showType": "select",
+                "dictionary": [
+                    {
+                        "text": "是",
+                        "value": true
+                    },
+                    {
+                        "text": "否",
+                        "value": false
+                    }
+                ]
+            },
+            {
+                "text": "是否启用批处理",
+                "bindControlAttr": "openBatchDispose",
+                "showType": "select",
+                "dictionary": [
+                    {
+                        "text": "启用",
+                        "value": true
+                    },
+                    {
+                        "text": "关闭",
+                        "value": false
+                    }
+                ]
+            },
+            {
+                "text": "是否显示批量办理",
+                "bindControlAttr": "openBatchOperate",
+                "showType": "select",
+                "dictionary": [
+                    {
+                        "text": "是",
+                        "value": true
+                    },
+                    {
+                        "text": "否",
+                        "value": false
+                    }
+                ]
+            },
+            {
+                "text": "要刷新的待办组件匹配类型",
+                "bindControlAttr": "refreshType",
+                "showType": "text",
+                "desc": "多个类型用逗号分隔"
+            },
+            {
+                "text": "是否显示视频通讯",
+                "bindControlAttr": "isShowVideoTx",
+                "showType": "select",
+                "dictionary": [
+                    {
+                        "text": "否",
+                        "value": false
+                    },
+                    {
+                        "text": "是",
+                        "value": true
+                    }
+                ]
+            },
+            {
+                "text": "视频通讯地址",
+                "bindControlAttr": "VideoTxurl",
+                "showType": "text",
+                "hidden":"@[isShowVideoTx]"
+            },
+            {
+                "text": "视频通讯打开方式",
+                "bindControlAttr": "VideoOpenType",
+                "showType": "select",
+                "dictionary": [
+                    {
+                        "text": "新窗口",
+                        "value": "_blank"
+                    },
+                    {
+                        "text": "弹出层",
+                        "value": "popup"
+                    },
+                    {
+                        "text": "内嵌tab",
+                        "value": "addtab"
+                    }
+                ],
+                "hidden":"@[isShowVideoTx]"
+            },
+            {
+                "text": "关注按钮名称",
+                "bindControlAttr": "actionName0",
+                "showType": "text"
+            },
+            {
+                "text": "发送按钮名称",
+                "bindControlAttr": "actionName1",
+                "showType": "text"
+            },
+            {
+                "text": "阅毕按钮名称",
+                "bindControlAttr": "actionName2",
+                "showType": "text"
+            },
+            {
+                "text": "报名按钮名称",
+                "bindControlAttr": "actionName3",
+                "showType": "text"
+            },
+            {
+                "text": "反馈按钮名称",
+                "bindControlAttr": "actionName4",
+                "showType": "text"
+            },
+            {
+                "text": "退回按钮名称",
+                "bindControlAttr": "actionName5",
+                "showType": "text"
+            },
+            {
+                "text": "签收按钮名称",
+                "bindControlAttr": "actionName6",
+                "showType": "text"
+            },
+            {
+                "text": "拒签按钮名称",
+                "bindControlAttr": "actionName7",
+                "showType": "text"
+            },
+            {
+                "text": "会签回执按钮名称",
+                "bindControlAttr": "actionName8",
+                "showType": "text"
+            },
+            {
+                "text": "盖章回执按钮名称",
+                "bindControlAttr": "actionName9",
+                "showType": "text"
+            },
+            {
+                "text": "反馈按钮名称",
+                "bindControlAttr": "actionName10",
+                "showType": "text"
+            }
+        ]
+    }
+]
