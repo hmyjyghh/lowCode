@@ -4,34 +4,31 @@
     <div class="main">
       <div class="main-l">
         <span>物料堆</span>
-        <ul>
-          <li
-            v-for="(item, index) in list"
-            id="cButton"
-            :key="index"
-            draggable="true"
-            @dragstart="handleDrag"
-          >
-            {{ item }}
-          </li>
-        </ul>
+        <components ref="components" />
       </div>
-      <div class="main-c" @dragover.prevent @drop="handleDrop">
-
+      <div class="main-c">
+        预览-渲染引擎
+        <preview ref="preview" />
       </div>
       <div class="main-r">
         <span>配置面板</span>
+        <config class="attributes-content" />
       </div>
     </div>
   </div>
 </template>
 
 <script>
-import cButton from '@/components/cButton.vue'
+// import cButton from '@/components/cButton.vue'
+import config from '@/components/config'
+import components from '@/components/components'
+import preview from '@/components/preview'
 export default {
   name: 'mypage',
   components: {
-    cButton
+    config,
+    components,
+    preview
   },
   data () {
     return {
@@ -74,4 +71,4 @@ export default {
     }
   }
 }
-</style>>
+</style>

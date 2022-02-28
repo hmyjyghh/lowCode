@@ -79,7 +79,7 @@ export default {
       const _json = vm.jsonSchema
       // console.log('_json', _json);
 
-      if (_json && (_json.type === 'Container' || _json.type === 'GRidone')) { 
+      if (_json && (_json.type === 'Container' || _json.type === 'GRidone')) {
         // console.log('_json', _json.type);
 
         if (!_json.children) {
@@ -98,7 +98,7 @@ export default {
   created () {
     this.init()
   },
-  mounted() {
+  mounted () {
     // console.log('...components', components);
   },
   render (h) {

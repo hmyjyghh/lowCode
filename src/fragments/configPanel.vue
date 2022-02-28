@@ -18,8 +18,8 @@ export default {
     },
     data: {
       type: Array,
-      default() {
-        return [];
+      default () {
+        return []
       }
     }
   },
@@ -45,14 +45,11 @@ export default {
     // console.log('h', h);
     // 初始化参数
     const _type = this.currentPickType
-    console.log('_type', _type);
+    console.log('_type', _type)
     // 渲染面板
-    // let _panel = this.renderPanel(h, _type)
+    let _panel = this.renderPanel(h, _type)
 
-    // return _panel
-  },
-  mounted() {
-    // console.log('components', components);
+    return _panel
   }
 }
 </script>
