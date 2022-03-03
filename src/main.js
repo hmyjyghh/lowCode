@@ -10,12 +10,16 @@ import store from './store'
 
 // import $ from 'jquery'
 
+import dsf from './utils'
+
+// 此处引入要使用的组件
+import PCBhc from './usecomponents'
+
 import './assets/designer/designer.scss'
 
 import DsfDesignerProperties from './config/page/dsfDesignerProperties'
 import DsfDesignerProperty from './config/page/dsfDesignerProperty'
-
-import dsf from './utils/index'
+import DsfLayoutTree from './config/page/layoutTree'
 
 // //加载jquery-ui的拖拽功能
 import(/* webpackChunkName: "jquery-ui" */ 'jqueryui/jquery-ui.min.css')
@@ -23,8 +27,10 @@ let jqui = import(/* webpackChunkName: "jquery-ui" */ 'jqueryui/jquery-ui.min.js
 
 Vue.component(DsfDesignerProperties.name, DsfDesignerProperties)
 Vue.component(DsfDesignerProperty.name, DsfDesignerProperty)
+Vue.component(DsfLayoutTree.name, DsfLayoutTree)
 
 Vue.use(ElementUI)
+Vue.use(PCBhc)
 
 Vue.prototype.$http = axios
 Vue.prototype.dsf = dsf

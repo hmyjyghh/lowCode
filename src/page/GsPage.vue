@@ -67,6 +67,7 @@
   </div>
 </template>
 <script>
+import $ from 'jquery'
 import extDefaultCode from './extCode'
 import dragItem from './dragItem'
 import groups from './group'
@@ -272,6 +273,7 @@ export default {
       $('.designer-page').droppable({
         tolerance: 'pointer',
         drop: (evt, ui) => {
+          debugger
           let data = ui.helper.data('data')
           let proxy = $(this.dragProxy_el)
           let slotEl = proxy.closest('[slot-name]')
@@ -343,9 +345,10 @@ export default {
     // 拖拽完成
     dropHandler (evt, container, slot, data) {
       let next = $(this.dragProxy_el).next('.designer-ctrl-proxy')
-      if (this.dragProxy.show == true) {
-        addToSlot.call(this, next.length ? next : null, container, slot, data)
-      }
+      // if (this.dragProxy.show == true) {
+      //   addToSlot.call(this, next.length ? next : null, container, slot, data)
+      // }
+      addToSlot.call(this, next.length ? next : null, container, 'center', data)
     },
     // 将组件添加到指定位置
     addControl (parent, slot, child, index) {
@@ -765,11 +768,11 @@ export default {
               this.firstOpen = true
               this.saved = false
             }
-            dsf.layer.pc.closeLoading(dialog)
+            // dsf.layer.pc.closeLoading(dialog)
           })
       } else {
         this.page = createComponent(ctrlType, defaultPageAttrs, this.mobile)
-        dsf.layer.pc.closeLoading(dialog)
+        // dsf.layer.pc.closeLoading(dialog)
         this.firstOpen = true
         this.saved = false
       }
@@ -1091,18 +1094,33 @@ function checkData (data) {
 
 // 将组件添加到插槽
 function addToSlot (obstacle, container, slot, data) {
-  let component = container.get(0).__vue__
+  let component = $('.ds-control.ds-page.fit').get(0).__vue__
   let attributes = component,
     index = null,
     newComp = null
-  if (obstacle) {
-    // 如果拖放位置已经存在组件，则计算该组件位置，准备插入到其前
-    let target = obstacle.get(0).__vue__
-    let slotItem = _.find(attributes.slots, (s) => s.name === slot)
-    index = _.findIndex(slotItem.controls, (com) => com === target.__context__.props)
-  }
+  // if (obstacle) {
+  //   // 如果拖放位置已经存在组件，则计算该组件位置，准备插入到其前
+  //   let target = obstacle.get(0).__vue__
+  //   let slotItem = _.find(attributes.slots, (s) => s.name === slot)
+  //   index = _.findIndex(slotItem.controls, (com) => com === target.__context__.props)
+  // }
   // 从左侧工具箱拖放过来
   if (data.state == 'add') {
+    newComp = createComponent(
+      data.attributes.ctrlType,
+      {
+      },
+      this.mobile
+    )
+    if (newComp.metadata) {
+      newComp.metadata.level = 0
+    }
+    console.log('组件数据', data)
+    console.log('组件对象', newComp)
+    if (data.attributes.dataId) {
+      newComp.dataId = data.attributes.dataId
+    }
+    newComp && this.addControl(attributes, slot, newComp, index)
     if (data.attributes.type == 'control') {
       newComp = createComponent(
         data.attributes.ctrlType,
