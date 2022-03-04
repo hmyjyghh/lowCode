@@ -22,7 +22,7 @@
 </template>
 
 <script>
-// import view from '_platform/dsf/mixins/view'
+import view from '@/mixins/view'
 // import schema from 'async-validator';
 // import container from '_platform/dsf/pc/bhc/container/container';
 
@@ -31,7 +31,7 @@ export default dsf.component({
   name: 'DsfPage',
   ctrlCaption: '页面',
   //   mixins: [view],
-  mixins: [control],
+  mixins: [control, view],
   data () {
     return {
       headHeight: 0,

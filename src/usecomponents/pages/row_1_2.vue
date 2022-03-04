@@ -1,15 +1,17 @@
 <template>
-  <DsfRow ref="row" :gutter="gutter" :min-height="minHeight" :class="getCss">
+  <!-- <DsfRow ref="row" :gutter="gutter" :min-height="minHeight" :class="getCss">
     <slot></slot>
-  </DsfRow>
-  <!-- <el-row class="ds-control ds-row" :gutter="(isDesign?0:gutter)" :class="getCss">
-    <el-col v-for="(slot, $index) in slots" :key="$index" :style="getStyle()" :md="size" :slot-name="slot.name">
+  </DsfRow> -->
+  <el-row class="ds-control ds-row" :gutter="(isDesign?0:gutter)" :class="getCss">
+    <!-- <el-col v-for="(slot, $index) in slots" :key="$index" :style="getStyle()" :slot-name="slot.name">
       <slot :name="slot.name"></slot>
-    </el-col>
-  </el-row> -->
+    </el-col> -->
+    <el-col :span="12" />
+    <el-col :span="12" />
+  </el-row>
 </template>
 <script>
-// import layout from '_platform/dsf/mixins/layout'
+import layout from '@/mixins/layout'
 
 /**
  * @class DsfRow12
@@ -21,7 +23,7 @@
 export default dsf.component({
   name: 'DsfRow12',
   ctrlCaption: '一行两列',
-  // mixins: [layout],
+  mixins: [layout],
   /**
    * @memberof DsfRow12
    * @name Props 属性
@@ -63,9 +65,16 @@ export default dsf.component({
     }
   },
   mounted () {
-    createDesignerColumns.call(this)
+    // createDesignerColumns.call(this)
   },
   methods: {
+    getStyle () {
+      let style = {}
+      if (!this.isDesign) {
+        style['min-height'] = this.minHeight + 'px'
+      }
+      return style
+    }
   }
 })
 function createDesignerColumns () {

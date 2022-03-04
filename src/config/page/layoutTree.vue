@@ -8,16 +8,17 @@
       </template>
     </component>
     <!--组件设计模式左上角按钮-->
-    <div :class="{ 'designer-mask': __desContext__.mask }" class="designer-btns">
+    <!-- :class="{ 'designer-mask': __desContext__.mask }" -->
+    <div class="designer-btns">
       <ul v-show="__desContext__.selected">
         <li v-if="__desContext__.hasInfo" class="info" title="元数据详情" @click.stop="$detail()" @mousedown.stop>
           <i class="iconfont fangdajing" />
         </li>
         <li v-if="__desContext__.hasDragDrop" ref="dragdrap" class="dragdrop" title="拖动" @click.stop @mousedown.stop>
-          <i class="iconfont yidong" />
+          <i class="iconfont yidong" />拖动
         </li>
         <li v-if="__desContext__.hasRemove" class="remove" title="移除" @click.stop="$remove()" @mousedown.stop>
-          <i class="iconfont shanchu" />
+          <i class="iconfont shanchu" />移除
         </li>
         <li v-if="__context__.props.isQuestionControl" class="setting" title="设置" @click.stop="$setting()" @mousedown.stop>
           <i class="iconfont shezhi" />
@@ -28,6 +29,7 @@
   </div>
 </template>
 <script>
+import $ from 'jquery'
 /* eslint-disable vue/prop-name-casing */
 export default {
   name: 'DsfLayoutTree',

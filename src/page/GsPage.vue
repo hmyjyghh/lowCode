@@ -273,7 +273,6 @@ export default {
       $('.designer-page').droppable({
         tolerance: 'pointer',
         drop: (evt, ui) => {
-          debugger
           let data = ui.helper.data('data')
           let proxy = $(this.dragProxy_el)
           let slotEl = proxy.closest('[slot-name]')
@@ -345,10 +344,10 @@ export default {
     // 拖拽完成
     dropHandler (evt, container, slot, data) {
       let next = $(this.dragProxy_el).next('.designer-ctrl-proxy')
-      // if (this.dragProxy.show == true) {
-      //   addToSlot.call(this, next.length ? next : null, container, slot, data)
-      // }
-      addToSlot.call(this, next.length ? next : null, container, 'center', data)
+      if (this.dragProxy.show === true) {
+        addToSlot.call(this, next.length ? next : null, container, slot, data)
+      }
+      // addToSlot.call(this, next.length ? next : null, container, 'center', data)
     },
     // 将组件添加到指定位置
     addControl (parent, slot, child, index) {
@@ -1094,7 +1093,7 @@ function checkData (data) {
 
 // 将组件添加到插槽
 function addToSlot (obstacle, container, slot, data) {
-  let component = $('.ds-control.ds-page.fit').get(0).__vue__
+  let component = container.get(0).__vue__
   let attributes = component,
     index = null,
     newComp = null
