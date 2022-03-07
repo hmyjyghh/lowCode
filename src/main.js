@@ -36,6 +36,79 @@ Vue.prototype.$http = axios
 Vue.prototype.dsf = dsf
 // Vue.prototype.$jq = $
 
+// 获取实际展示的字体大小
+Vue.prototype.getFontSizeNum = function (settingFontSize, globalFontSize, ishover) {
+  let fontsize = 14
+  if (settingFontSize == 0) {
+    switch (globalFontSize) {
+      case 'small':
+        fontsize = 14
+        break
+      case 'medium':
+        fontsize = 16
+        break
+      case 'large':
+        fontsize = 18
+        break
+    }
+    // 如果是使用用户选择的字体且是悬浮状态下的字体增加2，否则就还是使用组件属性设置的字体
+    if (ishover) {
+      fontsize = fontsize + 2
+    }
+  } else {
+    fontsize = settingFontSize
+  }
+  return fontsize
+}
+
+// 获取页面地址参数
+Vue.prototype.getUrlParam = function (paramName) {
+  var url = window.location.href
+  var oRegex = new RegExp('[\?&]' + paramName + '=([^&]+)', 'i')
+  var oMatch = oRegex.exec(url)
+  if (oMatch && oMatch.length > 1) {
+    return decodeURI(oMatch[1])
+  } else {
+    return ''
+  }
+}
+
+// 加载js
+Vue.prototype.loadOuterJs = function (src, reload, fun) {
+  var scriptsList = $("script[src='" + src + "']")
+  if (scriptsList.length > 0) return
+  var head = document.getElementsByTagName('head')[0] || document.head || document.documentElement
+  if (reload) {
+    var scriptList = head.getElementsByTagName('script')
+    for (let index = 0; index < scriptList.length; index++) {
+      const element = scriptList[index]
+      if (element.getAttribute('objectID') == 'dreamweb-' + src) {
+        element.remove()
+      }
+    }
+  }
+  var script = document.createElement('script')
+  script.setAttribute('type', 'text/javascript')
+  script.setAttribute('charset', 'UTF-8')
+  script.setAttribute('src', src)
+  script.setAttribute('objectID', 'dreamweb-' + src)
+
+  if (typeof fun === 'function') {
+    if (window.attachEvent) {
+      script.onreadystatechange = function () {
+        var r = script.readyState
+        if (r === 'loaded' || r === 'complete') {
+          script.onreadystatechange = null
+          fun()
+        }
+      }
+    } else {
+      script.onload = fun
+    }
+  }
+  head.appendChild(script)
+}
+
 // 为vue对象注入表达式执行
 Vue.prototype.$eval = function (express, varible) {
   return dsf.express.eval.call(this, express, varible)

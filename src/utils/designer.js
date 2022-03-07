@@ -95,9 +95,7 @@ function getParentControl (el) {
     if (vueComponent && vueComponent.$props.designOnlySlot) {
       mark = true
     }
-  }
-  // 插糟是个普通的html元素
-  else {
+  } else { // 插糟是个普通的html元素
     mark = true
   }
   if (mark) {

@@ -30,6 +30,7 @@
 </template>
 <script>
 import $ from 'jquery'
+import jsonSchema from '@/temp/2.json'
 /* eslint-disable vue/prop-name-casing */
 export default {
   name: 'DsfLayoutTree',
@@ -118,7 +119,7 @@ export default {
     // 监听枚举类型的元数据中选项数据变化
     '__context__.props.metadata.dataSource': {
       handler (v) {
-        if (this.__context__.props.metadata.ckey == 'items-meta-data') {
+        if (this.__context__.props.metadata.ckey === 'items-meta-data') {
           // 枚举类型数据源请求
           setEnumItems.call(this, v)
         }
@@ -127,6 +128,7 @@ export default {
   },
   created () {
     this.__context__.props = this.componentProps
+    console.log('this.componentProps', this.componentProps)
     if (this.__context__.props.view) {
       this.__context__.root = this
     } else {

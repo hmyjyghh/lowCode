@@ -53,7 +53,7 @@
         </div>
       </div>
     </div>
-    <div v-show="dragProxy.show" ref="dragProxy" class="drag-proxy"></div>
+    <div v-show="dragProxy.show" ref="dragProxy" class="drag-proxy hhh-sd"></div>
     <div v-if="contextMenu.show" ref="contextmenu" class="ds-contextmenu" :style="{ top: contextMenu.pos.y + 'px', left: contextMenu.pos.x + 'px' }">
       <dl class="ds-contextmenu-child ds-contextmenu-anim">
         <template v-for="(item, $index) in contextMenu.items">
@@ -67,6 +67,7 @@
   </div>
 </template>
 <script>
+import jsonSchema from '@/temp/2.json'
 import $ from 'jquery'
 import extDefaultCode from './extCode'
 import dragItem from './dragItem'
@@ -120,20 +121,7 @@ export default {
           { text: '保存模板', icon: 'baocun', handler: this.saveLayoutToTemplate, show: () => this.tpl === true },
           { text: '暂存', icon: 'baocun', handler: this.stageSaveLayout, show: () => this.tpl === false },
           { text: '预览', icon: 'icon_yulan', handler: this.preView, show: () => true },
-          { text: '模板', icon: 'shebeikaifa1', handler: this.useTpl, show: () => true },
-          { text: '控件组', icon: 'icon_shezhi', handler: this.selectComponents, show: () => true},
-          // { text: "控件组", icon: "icon_shezhi", handler: this.saveCtrl, show: () => true },
-          { text: '元数据组', icon: 'icon_shezhi', handler: this.selectMateGroup, show: () => true },
-          {
-            text: '保存业务组件',
-            icon: 'biaodanzujian-xialakuang',
-            handler: this.saveBusinessComponent,
-            show: () => this.saved
-          },
-          { text: 'Vue模板', icon: 'shebeikaifa1', handler: this.openVueTemplate, show: () => true },
-          { text: '二次开发JS', icon: 'shebeikaifa1', handler: this.openExtJs, show: () => this.tpl === false && this.saved },
-          { text: '自定义CSS', icon: 'shebeikaifa1', handler: this.openExtCss, show: () => this.saved },
-          { text: '自定义审核', icon: 'guize', handler: dsf.noop, show: () => this.tpl === false && this.saved }
+          { text: '模板', icon: 'shebeikaifa1', handler: this.useTpl, show: () => true }
         ],
         toolsBox: {
           // tab默认选中
@@ -299,13 +287,13 @@ export default {
       if (target.hasClass('drag-proxy')) {
         return
       }
-      if (target.is('[slot-name]')) {
+      if (target.is('[slot-name]')) { // 判断是否有插槽 显示红框
         let allow = dsf.designer.isAllowDrop(target, this)
         if (allow) {
           box = target
           this.dragProxy.show = true
           let proxy = $(this.dragProxy_el)
-          box.append(proxy)
+          box.append(proxy) // drag-proxy  红框
         }
       } else {
         let ctrl = target.closest('.designer-ctrl-proxy')
@@ -347,7 +335,6 @@ export default {
       if (this.dragProxy.show === true) {
         addToSlot.call(this, next.length ? next : null, container, slot, data)
       }
-      // addToSlot.call(this, next.length ? next : null, container, 'center', data)
     },
     // 将组件添加到指定位置
     addControl (parent, slot, child, index) {
@@ -770,7 +757,8 @@ export default {
             // dsf.layer.pc.closeLoading(dialog)
           })
       } else {
-        this.page = createComponent(ctrlType, defaultPageAttrs, this.mobile)
+        // this.page = createComponent(ctrlType, defaultPageAttrs, this.mobile)
+        this.page = jsonSchema
         // dsf.layer.pc.closeLoading(dialog)
         this.firstOpen = true
         this.saved = false

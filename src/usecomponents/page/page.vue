@@ -1,5 +1,5 @@
 <template>
-  <div class="ds-control ds-page" :class="getCss" :style="pageStyle">
+  <div class="ds-control ds-page page-init-ghh" :class="getCss" :style="pageStyle">
     <!--页头-->
     <div class="ds-page-head">
       <div ref="head" class="head-inner" :slot-name="slots[1].name">

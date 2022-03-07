@@ -3,11 +3,11 @@
     <slot></slot>
   </DsfRow> -->
   <el-row class="ds-control ds-row" :gutter="(isDesign?0:gutter)" :class="getCss">
-    <!-- <el-col v-for="(slot, $index) in slots" :key="$index" :style="getStyle()" :slot-name="slot.name">
+    <el-col v-for="(slot, $index) in slots" :key="$index" :style="getStyle()" :slot-name="slot.name">
       <slot :name="slot.name"></slot>
-    </el-col> -->
-    <el-col :span="12" />
-    <el-col :span="12" />
+    </el-col>
+    <!-- <el-col :span="12" />
+    <el-col :span="12" /> -->
   </el-row>
 </template>
 <script>
